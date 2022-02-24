@@ -1,5 +1,6 @@
 package com.sol.demoecom.user;
 
+import com.sol.demoecom.user.response.UserCredential;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,9 +34,9 @@ public class UserServiceTest {
         when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(Optional.of(user));
 
         // Assert
-        String credential = userService.login(username, password);
+        UserCredential credential = userService.login(username, password);
 
         // Assert
-        assertThat(credential).isEqualTo(testCredential);
+        assertThat(credential.getToken()).isEqualTo(testCredential);
     }
 }
