@@ -1,7 +1,7 @@
 package com.sol.demoecom.user;
 
-public class AuthenticationFailException extends Throwable {
+public class AuthenticationFailException extends RuntimeException {
     public AuthenticationFailException() {
-        super();
+        super("Username or password incorrect");
     }
 }
