@@ -3,6 +3,7 @@ package com.sol.demoecom.common;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -16,9 +17,11 @@ public class BaseModel {
     private UUID id = UUID.randomUUID();
 
     @CreationTimestamp
+    @Column(nullable=false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
+    @Column(nullable=false)
     private LocalDateTime updatedAt;
 
     private LocalDateTime deletedAt;
