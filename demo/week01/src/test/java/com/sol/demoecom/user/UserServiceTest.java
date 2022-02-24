@@ -20,22 +20,22 @@ public class UserServiceTest {
 
     @Test
     @DisplayName("Should return accessToken when login with correct username and password")
-    void login() throws AuthenticationFailException {
+    void login_withInitialData_success() throws AuthenticationFailException {
         // Arrange
         UserService userService = new UserService();
         userService.setUserRepository(userRepository);
 
         String username = "user01";
         String password = "pass";
-        String accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlVzZXIwMSJ9.saNh8MedJAAeSWE06XH5M-2EcWny0ZFfvIS-qJjFfWk";
+        String testCredential = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlVzZXIwMSJ9.saNh8MedJAAeSWE06XH5M-2EcWny0ZFfvIS-qJjFfWk";
 
         UserModel user = new UserModel(username, password);
         when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(Optional.of(user));
 
         // Assert
-        String result = userService.login(username, password);
+        String credential = userService.login(username, password);
 
         // Assert
-        assertThat(result).isEqualTo(accessToken);
+        assertThat(credential).isEqualTo(testCredential);
     }
 }
