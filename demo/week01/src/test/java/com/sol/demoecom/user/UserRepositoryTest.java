@@ -27,9 +27,9 @@ public class UserRepositoryTest {
         userRepository.save(user);
 
         // Act
-        Optional<UserModel> result = userRepository.findByUsernameAndPassword(username, password);
+        Optional<UserModel> matchedUser = userRepository.findByUsernameAndPassword(username, password);
 
         // Assert
-        assertThat(result).isNotEmpty();
+        assertThat(matchedUser).isNotEmpty();
     }
 }

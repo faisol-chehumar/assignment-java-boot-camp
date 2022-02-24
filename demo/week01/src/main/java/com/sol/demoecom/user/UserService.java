@@ -17,8 +17,8 @@ public class UserService {
     }
 
     public String login(String username, String password) throws AuthenticationFailException {
-        Optional<UserModel> result = userRepository.findByUsernameAndPassword(username, password);
-        if(result.isPresent()) {
+        Optional<UserModel> matchedUser = userRepository.findByUsernameAndPassword(username, password);
+        if(matchedUser.isPresent()) {
             return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlVzZXIwMSJ9.saNh8MedJAAeSWE06XH5M-2EcWny0ZFfvIS-qJjFfWk";
         }
 
