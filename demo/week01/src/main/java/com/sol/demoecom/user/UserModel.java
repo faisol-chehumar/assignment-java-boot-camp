@@ -4,8 +4,10 @@ import com.sol.demoecom.common.BaseModel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="users")
 public class UserModel extends BaseModel {
 
     @Column(nullable=false, unique = true)
