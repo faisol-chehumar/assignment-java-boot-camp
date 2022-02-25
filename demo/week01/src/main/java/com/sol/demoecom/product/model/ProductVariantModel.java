@@ -1,4 +1,4 @@
-package com.sol.demoecom.product;
+package com.sol.demoecom.product.model;
 
 import com.sol.demoecom.common.BaseModel;
 

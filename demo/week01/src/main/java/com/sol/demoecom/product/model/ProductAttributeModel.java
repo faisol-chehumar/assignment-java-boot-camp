@@ -1,13 +1,11 @@
-package com.sol.demoecom.product;
+package com.sol.demoecom.product.model;
 
 import com.sol.demoecom.common.BaseModel;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "product_attributes")
