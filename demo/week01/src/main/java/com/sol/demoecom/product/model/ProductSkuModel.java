@@ -18,6 +18,9 @@ public class ProductSkuModel extends BaseModel {
     @OneToMany(mappedBy="productSku")
     private List<ProductRatingModel> productRatings;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProductModel product;
+
     @Column(nullable = false, unique = true)
     private String sku;
 

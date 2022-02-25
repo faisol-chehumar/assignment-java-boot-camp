@@ -12,13 +12,16 @@ public class ProductModel extends BaseModel {
     private List<ProductImageModel> images;
 
     @OneToMany(mappedBy = "product")
-    private List<ProductSkuModel> productSku;
+    private List<ProductSkuModel> productSkus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private BrandModel brand;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false, unique = true)
-    private int productNumber;
+    private String productNumber;
 
     private String description;
 
@@ -30,9 +33,18 @@ public class ProductModel extends BaseModel {
     public ProductModel() {
     }
 
-    public ProductModel(List<ProductImageModel> images, List<ProductSkuModel> productSku, String name, int productNumber, String description, String shopLocation, int warrantDays) {
+    public ProductModel(List<ProductImageModel> images, List<ProductSkuModel> productSkus, BrandModel brand, String name, String productNumber, String description, String shopLocation, int warrantDays) {
         this.images = images;
-        this.productSku = productSku;
+        this.productSkus = productSkus;
+        this.brand = brand;
+        this.name = name;
+        this.productNumber = productNumber;
+        this.description = description;
+        this.shopLocation = shopLocation;
+        this.warrantDays = warrantDays;
+    }
+
+    public ProductModel(String name, String productNumber, String description, String shopLocation, int warrantDays) {
         this.name = name;
         this.productNumber = productNumber;
         this.description = description;
@@ -48,12 +60,20 @@ public class ProductModel extends BaseModel {
         this.images = images;
     }
 
-    public List<ProductSkuModel> getProductSku() {
-        return productSku;
+    public List<ProductSkuModel> getProductSkus() {
+        return productSkus;
     }
 
-    public void setProductSku(List<ProductSkuModel> productSku) {
-        this.productSku = productSku;
+    public void setProductSkus(List<ProductSkuModel> productSkus) {
+        this.productSkus = productSkus;
+    }
+
+    public BrandModel getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BrandModel brand) {
+        this.brand = brand;
     }
 
     public String getName() {
@@ -64,11 +84,11 @@ public class ProductModel extends BaseModel {
         this.name = name;
     }
 
-    public int getProductNumber() {
+    public String getProductNumber() {
         return productNumber;
     }
 
-    public void setProductNumber(int productNumber) {
+    public void setProductNumber(String productNumber) {
         this.productNumber = productNumber;
     }
 

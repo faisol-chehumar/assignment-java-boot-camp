@@ -3,6 +3,7 @@ package com.sol.demoecom.product.model;
 import com.sol.demoecom.common.BaseModel;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "product_ratings")
@@ -10,6 +11,12 @@ public class ProductRatingModel extends BaseModel {
     public enum RatingEnums {
         ONE, TWO, THREE, FOUR, FIVE;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProductSkuModel productSku;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private OrderModel order;
 
     private RatingEnums rating;
 

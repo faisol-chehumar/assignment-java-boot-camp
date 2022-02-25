@@ -10,6 +10,9 @@ public class ProductImageModel extends BaseModel {
     @Column(nullable = false)
     private String image;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProductModel product;
+
     public ProductImageModel() {
     }
 
