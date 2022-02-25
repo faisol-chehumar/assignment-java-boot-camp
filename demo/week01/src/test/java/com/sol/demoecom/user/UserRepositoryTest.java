@@ -18,9 +18,9 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("Should return true when findByUsernameAndPassword with initial user data.")
-     void findByUsernameAndPassword_WithInitialUser_success() {
+    void findByUsernameAndPassword_WithInitialUser_success() {
         // Arrange
-        String username = "user01";
+        String username = "user02";
         String password = "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684";
 
         UserModel user = new UserModel(username, password);
