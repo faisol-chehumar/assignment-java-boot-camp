@@ -1,6 +1,7 @@
 package com.sol.demoecom.product.controller;
 
 import com.sol.demoecom.common.ResponseSuccess;
+import com.sol.demoecom.product.controller.response.ProductDetail;
 import com.sol.demoecom.product.controller.response.ProductsItem;
 import com.sol.demoecom.product.controller.response.SearchProduct;
 import com.sol.demoecom.product.mapper.ProductItemMapper;
@@ -24,5 +25,10 @@ public class ProductController {
         int totalCount = (int) productRepository.count();
         int count = products.size();
         return new ResponseSuccess(new SearchProduct(totalCount, count, productsItems));
+    }
+
+    @GetMapping("/products/{productId}")
+    public ResponseSuccess<ProductDetail> getDetailById(@PathVariable String productId) {
+        return new ResponseSuccess(new ProductDetail());
     }
 }
