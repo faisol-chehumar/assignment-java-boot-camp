@@ -4,13 +4,17 @@ import com.sol.demoecom.common.ResponseSuccess;
 import com.sol.demoecom.product.controller.response.ProductDetail;
 import com.sol.demoecom.product.controller.response.ProductsItem;
 import com.sol.demoecom.product.controller.response.SearchProduct;
+import com.sol.demoecom.product.mapper.ProductDetailMapper;
 import com.sol.demoecom.product.mapper.ProductItemMapper;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.repository.ProductRepository;
+import com.sol.demoecom.user.AuthenticationFailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -28,7 +32,11 @@ public class ProductController {
     }
 
     @GetMapping("/products/{productId}")
-    public ResponseSuccess<ProductDetail> getDetailById(@PathVariable String productId) {
-        return new ResponseSuccess(new ProductDetail());
+    public ResponseSuccess<ProductDetail> getDetailById(@PathVariable UUID productId) {
+        Optional<ProductModel> product =  productRepository.findById(productId);
+        if(product.isPresent()) {
+            return new ResponseSuccess(new ProductDetailMapper().mapRow(product.get()));
+        }
+        return null;
     }
 }
