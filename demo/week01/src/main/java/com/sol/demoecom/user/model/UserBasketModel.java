@@ -19,6 +19,10 @@ public class UserBasketModel extends BaseModel {
     public UserBasketModel() {
     }
 
+    public UserBasketModel(UserModel user) {
+        this.user = user;
+    }
+
     public UserBasketModel(UserModel user, List<UserBasketItemModel> items) {
         this.user = user;
         this.items = items;

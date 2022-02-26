@@ -3,8 +3,10 @@ package com.sol.demoecom;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
 import com.sol.demoecom.product.repository.ProductRepository;
+import com.sol.demoecom.user.model.UserBasketModel;
 import com.sol.demoecom.user.model.UserModel;
-import com.sol.demoecom.user.UserRepository;
+import com.sol.demoecom.user.repository.UserBasketRepository;
+import com.sol.demoecom.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +22,9 @@ public class DemoEcomApplication {
 	@Autowired
 	ProductRepository productRepository;
 
+	@Autowired
+	UserBasketRepository userBasketRepository;
+
 	@PostConstruct
 	void initializeProductData() {
 		ProductModel product = new ProductModel("Adidas NMD R1 Black and Grey FY5727, FZ0077, FY5730 ", "234510233456", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet libero magna, eu volutpat metus euismod sit amet. Nullam aliquet vel orci ac efficitur.", "กรุงเทพ", 365);
@@ -31,7 +36,11 @@ public class DemoEcomApplication {
 	@PostConstruct
 	void initializeUserData() {
 		UserModel user = new UserModel("user01", "pass");
-		userRepository.save(user);
+		user = userRepository.save(user);
+
+		UserBasketModel userBasket = new UserBasketModel();
+		userBasket.setUser(user);
+		userBasketRepository.save(userBasket);
 	}
 
 	public static void main(String[] args) {

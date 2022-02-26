@@ -1,8 +1,9 @@
 package com.sol.demoecom.user;
 
 import com.sol.demoecom.common.ResponseFail;
-import com.sol.demoecom.common.ResponseSuccess;
-import com.sol.demoecom.user.response.UserCredential;
+import com.sol.demoecom.product.exception.ProductNotFoundException;
+import com.sol.demoecom.user.exception.AuthenticationFailException;
+import com.sol.demoecom.user.exception.NotEnoughProductException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +17,20 @@ public class UserControllerAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseFail authenticationFail(AuthenticationFailException e) {
+        return new ResponseFail(e.getMessage());
+    }
+
+    @ExceptionHandler(NotEnoughProductException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseFail notEnoughProduct(NotEnoughProductException e) {
+        return new ResponseFail(e.getMessage());
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseFail productNotFound(ProductNotFoundException e) {
         return new ResponseFail(e.getMessage());
     }
 }

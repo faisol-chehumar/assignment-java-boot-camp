@@ -19,12 +19,6 @@ public class UserModel extends BaseModel {
 
     public UserModel() {}
 
-    public UserModel(UserBasketModel userBasket, String username, String password) {
-        this.userBasket = userBasket;
-        this.username = username;
-        this.password = password;
-    }
-
     public UserModel(String username, String password) {
         this.username = username;
         this.password = password;
