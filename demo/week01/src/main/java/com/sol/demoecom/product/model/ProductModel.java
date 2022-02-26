@@ -3,13 +3,14 @@ package com.sol.demoecom.product.model;
 import com.sol.demoecom.common.BaseModel;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "products")
 public class ProductModel extends BaseModel {
-    @OneToMany(mappedBy = "product")
-    private List<ProductImageModel> images;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductImageModel> images = new ArrayList<>();
 
     @OneToMany(mappedBy = "product")
     private List<ProductSkuModel> productSkus;
@@ -128,5 +129,10 @@ public class ProductModel extends BaseModel {
 
     public void setWarrantDays(int warrantDays) {
         this.warrantDays = warrantDays;
+    }
+
+    public void addImage(ProductImageModel image) {
+        images.add(image);
+        image.setProduct(this);
     }
 }

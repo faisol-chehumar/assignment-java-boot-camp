@@ -17,8 +17,7 @@ public class BrandModel extends BaseModel {
     public BrandModel() {
     }
 
-    public BrandModel(List<ProductModel> product, String name) {
-        this.product = product;
+    public BrandModel(String name) {
         this.name = name;
     }
 

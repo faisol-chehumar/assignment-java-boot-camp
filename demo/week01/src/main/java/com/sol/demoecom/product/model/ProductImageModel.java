@@ -16,8 +16,9 @@ public class ProductImageModel extends BaseModel {
     public ProductImageModel() {
     }
 
-    public ProductImageModel(String image) {
+    public ProductImageModel(String image, ProductModel product) {
         this.image = image;
+        this.product = product;
     }
 
     public String getImage() {
@@ -26,5 +27,13 @@ public class ProductImageModel extends BaseModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public ProductModel getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductModel product) {
+        this.product = product;
     }
 }
