@@ -1,6 +1,7 @@
 package com.sol.demoecom;
 
 import com.sol.demoecom.product.model.ProductModel;
+import com.sol.demoecom.product.model.ProductSkuModel;
 import com.sol.demoecom.product.repository.ProductRepository;
 import com.sol.demoecom.user.UserModel;
 import com.sol.demoecom.user.UserRepository;
@@ -23,8 +24,10 @@ public class DemoEcomApplication {
 
 	@PostConstruct
 	void initializeProductData() {
-		ProductModel product1 = new ProductModel("Adidas NMD R1 Black and Grey FY5727, FZ0077, FY5730 ", "234510233456", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet libero magna, eu volutpat metus euismod sit amet. Nullam aliquet vel orci ac efficitur.", "กรุงเทพ", 365);
-		productRepository.save(product1);
+		ProductModel product = new ProductModel("Adidas NMD R1 Black and Grey FY5727, FZ0077, FY5730 ", "234510233456", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet libero magna, eu volutpat metus euismod sit amet. Nullam aliquet vel orci ac efficitur.", "กรุงเทพ", 365);
+		ProductSkuModel productSkuModel = new ProductSkuModel("nmd-bl-xl", "sdsd", 1000, 1000, 50, product);
+		product.addProductSku(productSkuModel);
+		productRepository.save(product);
 	}
 
 	@PostConstruct
