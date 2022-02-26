@@ -37,15 +37,25 @@ public class ProductSkuModel extends BaseModel {
     public ProductSkuModel() {
     }
 
-    public ProductSkuModel(ProductSkuDiscountModel productSkuDiscount, List<ProductVariantModel> productVariants, List<ProductRatingModel> productRatings, String sku, String image, int regularPrice, int salePrice, int unitInStock) {
+    public ProductSkuModel(ProductSkuDiscountModel productSkuDiscount, List<ProductVariantModel> productVariants, List<ProductRatingModel> productRatings, ProductModel product, String sku, String image, int regularPrice, int salePrice, int unitInStock) {
         this.productSkuDiscount = productSkuDiscount;
         this.productVariants = productVariants;
         this.productRatings = productRatings;
+        this.product = product;
         this.sku = sku;
         this.image = image;
         this.regularPrice = regularPrice;
         this.salePrice = salePrice;
         this.unitInStock = unitInStock;
+    }
+
+    public ProductSkuModel(String sku, String image, int regularPrice, int salePrice, int unitInStock, ProductModel product) {
+        this.sku = sku;
+        this.image = image;
+        this.regularPrice = regularPrice;
+        this.salePrice = salePrice;
+        this.unitInStock = unitInStock;
+        this.product = product;
     }
 
     public ProductSkuDiscountModel getProductSkuDiscount() {
@@ -70,6 +80,14 @@ public class ProductSkuModel extends BaseModel {
 
     public void setProductRatings(List<ProductRatingModel> productRatings) {
         this.productRatings = productRatings;
+    }
+
+    public ProductModel getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductModel product) {
+        this.product = product;
     }
 
     public String getSku() {

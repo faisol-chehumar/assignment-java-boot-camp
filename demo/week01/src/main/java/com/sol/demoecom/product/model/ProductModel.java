@@ -12,8 +12,8 @@ public class ProductModel extends BaseModel {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductImageModel> images = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product")
-    private List<ProductSkuModel> productSkus;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductSkuModel> productSkus  = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private BrandModel brand;
@@ -134,5 +134,10 @@ public class ProductModel extends BaseModel {
     public void addImage(ProductImageModel image) {
         images.add(image);
         image.setProduct(this);
+    }
+
+    public void addProductSku(ProductSkuModel productSku) {
+        productSkus.add(productSku);
+        productSku.setProduct(this);
     }
 }
