@@ -20,9 +20,6 @@ public class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private BrandRepository brandRepository;
-
     @Test
     @DisplayName("Should return true if product size is 2 when input is 'Nike'.")
     void findByNameContainsIgnoreCase_withInitialProduct_productSizeEqual2() {
