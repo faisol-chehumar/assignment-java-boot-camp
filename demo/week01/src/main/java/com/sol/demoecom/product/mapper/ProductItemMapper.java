@@ -1,15 +1,17 @@
 package com.sol.demoecom.product.mapper;
 
+import com.sol.demoecom.product.controller.response.AttributesItem;
 import com.sol.demoecom.product.controller.response.ProductsItem;
 import com.sol.demoecom.product.controller.response.Rating;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.model.ProductSkuDiscountModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
-import org.yaml.snakeyaml.util.ArrayUtils;
 
 import java.util.*;
 
 public class ProductItemMapper implements RowMapper<ProductsItem, ProductModel> {
+
+
     @Override
     public ProductsItem mapRow(ProductModel product) {
         try {
@@ -32,6 +34,11 @@ public class ProductItemMapper implements RowMapper<ProductsItem, ProductModel> 
             System.out.println("ex" + ex);
             return null;
         }
+    }
+
+    @Override
+    public ProductsItem mapRow(ProductModel productModel, List<AttributesItem> attributesItem) {
+        return null;
     }
 
     private Rating getRating() {
