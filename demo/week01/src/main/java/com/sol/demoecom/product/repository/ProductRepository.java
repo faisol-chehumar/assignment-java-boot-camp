@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface ProductRepository extends JpaRepository<ProductModel, UUID> {
     List<ProductModel> findByNameContainsIgnoreCase(String name);
+    long count();
 }
