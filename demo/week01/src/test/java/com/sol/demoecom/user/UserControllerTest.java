@@ -14,6 +14,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,8 +30,8 @@ class UserControllerTest {
     UserRepository userRepository;
 
     @Test
-    @DisplayName("Should return credential when login with username: user01 and password: pass")
-    void login_with_success() throws JSONException {
+    @DisplayName("Should return credential when login with username: 'user01' and password: 'pass'")
+    void login_withCorrectUserAndPass_tokenIsNotEmpty() throws JSONException {
         // Arrange
         String testUsername = "user01";
         String testPassword = "pass";
@@ -46,9 +48,13 @@ class UserControllerTest {
                 new HttpEntity<String>(loginJsonObject.toString(), headers);
 
         // Action
-        ResponseSuccess<UserCredential> result = testRestTemplate.postForObject("/user/login", request, ResponseSuccess.class);
+        String stringResponse = testRestTemplate.postForObject("/user/login", request, String.class);
+        JSONObject jsonResponse = new JSONObject(stringResponse);
+
+        String token = jsonResponse.getJSONObject("data").getString("token");
 
         // Assert
-        assertThat(result.isSuccess()).isTrue();
+        assertThat(token).isNotEmpty();
+
     }
 }
