@@ -3,6 +3,7 @@ package com.sol.demoecom.product.controller.response;
 import java.util.List;
 
 public class VariantsItem{
+	private String productSkuId;
 	private int regularPrice;
 	private String image;
 	private int unitInStock;
@@ -14,7 +15,8 @@ public class VariantsItem{
 	@Override
 	public String toString() {
 		return "VariantsItem{" +
-				"regularPrice=" + regularPrice +
+				"productSkuId='" + productSkuId + '\'' +
+				", regularPrice=" + regularPrice +
 				", image='" + image + '\'' +
 				", unitInStock=" + unitInStock +
 				", percentDiscount=" + percentDiscount +
@@ -22,6 +24,14 @@ public class VariantsItem{
 				", attributeIndex=" + attributeIndex +
 				", salePrice=" + salePrice +
 				'}';
+	}
+
+	public String getProductSkuId() {
+		return productSkuId;
+	}
+
+	public void setProductSkuId(String productSkuId) {
+		this.productSkuId = productSkuId;
 	}
 
 	public int getRegularPrice() {

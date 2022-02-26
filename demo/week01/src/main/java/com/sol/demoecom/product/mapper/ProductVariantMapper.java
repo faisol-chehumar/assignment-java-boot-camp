@@ -18,6 +18,8 @@ public class ProductVariantMapper implements RowMapper<VariantsItem, ProductSkuM
     @Override
     public VariantsItem mapRow(ProductSkuModel productSkuModel, List<AttributesItem> attributesItems) {
         VariantsItem variantsItem = new VariantsItem();
+
+        variantsItem.setProductSkuId(productSkuModel.getId().toString());
         variantsItem.setSku(productSkuModel.getSku());
         variantsItem.setRegularPrice(productSkuModel.getRegularPrice());
         variantsItem.setSalePrice(productSkuModel.getSalePrice());

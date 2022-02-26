@@ -15,18 +15,17 @@ public class ProductDetailMapper implements RowMapper<ProductDetail, ProductMode
     @Override
     public ProductDetail mapRow(ProductModel product) {
         ProductDetail productDetail = new ProductDetail();
-
         productDetail.setId(product.getId().toString());
         productDetail.setName(product.getName());
         productDetail.setDescription(product.getDescription());
         productDetail.setProductNumber(product.getProductNumber());
         productDetail.setImages(product.getImages().stream().map(p -> p.getImage()).collect(Collectors.toList()));
-        productDetail.setRegularPriceMin(product.getProductSkus().isEmpty() ? 0 : this.getRegularPrice(product.getProductSkus())[1]);
-        productDetail.setRegularPriceMax(product.getProductSkus().isEmpty() ? 0 : this.getRegularPrice(product.getProductSkus())[1]);
-        productDetail.setSalePriceMin(product.getProductSkus().isEmpty() ? 0 : this.getSalePrice(product.getProductSkus())[0]);
-        productDetail.setSalePriceMax(product.getProductSkus().isEmpty() ? 0 : this.getSalePrice(product.getProductSkus())[1]);
-        productDetail.setPercentDiscountMin(product.getProductSkus().isEmpty() ? 0 : this.getPercentDiscount(product.getProductSkus())[0]);
-        productDetail.setPercentDiscountMax(product.getProductSkus().isEmpty() ? 0 : this.getPercentDiscount(product.getProductSkus())[1]);
+        productDetail.setRegularPriceMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxRegularPrice(product.getProductSkus())[1]);
+        productDetail.setRegularPriceMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxRegularPrice(product.getProductSkus())[1]);
+        productDetail.setSalePriceMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxSalePrice(product.getProductSkus())[0]);
+        productDetail.setSalePriceMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxSalePrice(product.getProductSkus())[1]);
+        productDetail.setPercentDiscountMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxPercentDiscount(product.getProductSkus())[0]);
+        productDetail.setPercentDiscountMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxPercentDiscount(product.getProductSkus())[1]);
         productDetail.setWarrantyDays(product.getWarrantDays());
         productDetail.setRating(this.getRating());
         List<AttributesItem> attributesItems = this.getAttribute(product.getProductSkus());
@@ -47,54 +46,6 @@ public class ProductDetailMapper implements RowMapper<ProductDetail, ProductMode
         return attributes;
     }
 
-    private int[] getRegularPrice(List<ProductSkuModel> productSkus) {
-        IntSummaryStatistics summaryStatistics = productSkus.stream()
-                .mapToInt(ProductSkuModel::getRegularPrice)
-                .summaryStatistics();
-
-        int[] result = new int[]{};
-        int minPrice = summaryStatistics.getMin();
-        int maxPrice = summaryStatistics.getMax();
-
-        result[0] = minPrice;
-        result[1] = maxPrice;
-
-        return result;
-    }
-
-    private int[] getSalePrice(List<ProductSkuModel> productSkus) {
-        IntSummaryStatistics summaryStatistics = productSkus.stream()
-                .map(productSku -> productSku.getRegularPrice() - productSku.getProductSkuDiscount().getValue())
-                .mapToInt(Integer::intValue)
-                .summaryStatistics();
-
-        int[] result = new int[]{};
-        int minPrice = summaryStatistics.getMin();
-        int maxPrice = summaryStatistics.getMax();
-
-        result[0] = minPrice;
-        result[1] = maxPrice;
-
-        return result;
-    }
-
-
-    private int[] getPercentDiscount(List<ProductSkuModel> productSkus) {
-        IntSummaryStatistics summaryStatistics = productSkus.stream()
-                .map(ProductSkuModel::getProductSkuDiscount)
-                .mapToInt(ProductSkuDiscountModel::getValue)
-                .summaryStatistics();
-
-        int[] result = new int[]{};
-        int minDiscount = summaryStatistics.getMin();
-        int maxDiscount = summaryStatistics.getMax();
-
-        result[0] = minDiscount;
-        result[1] = maxDiscount;
-
-        return result;
-    }
-
     private Rating getRating() {
         Integer ratingCount = 1324;
         double ratingStar = 4.8;
@@ -104,5 +55,62 @@ public class ProductDetailMapper implements RowMapper<ProductDetail, ProductMode
         ratingResult.setRatingStar(ratingStar);
 
         return ratingResult;
+    }
+
+    private int[] getMinMaxRegularPrice(List<ProductSkuModel> productSkus) {
+        if(productSkus.size() == 1) {
+            return new int[]{productSkus.get(0).getRegularPrice(), productSkus.get(0).getRegularPrice()};
+        }
+        IntSummaryStatistics summaryStatistics = productSkus.stream()
+                .mapToInt(ProductSkuModel::getRegularPrice)
+                .summaryStatistics();
+
+        int minPrice = summaryStatistics.getMin();
+        int maxPrice = summaryStatistics.getMax();
+        int[] result = new int[]{minPrice, maxPrice};
+
+        return result;
+    }
+
+    private int[] getMinMaxSalePrice(List<ProductSkuModel> productSkus) {
+        if(productSkus.size() == 1) {
+            return new int[]{productSkus.get(0).getSalePrice(), productSkus.get(0).getSalePrice()};
+        }
+        IntSummaryStatistics summaryStatistics = productSkus.stream()
+                .map(productSku -> productSku.getRegularPrice() - productSku.getSalePrice())
+                .mapToInt(Integer::intValue)
+                .summaryStatistics();
+
+        int minPrice = summaryStatistics.getMin();
+        int maxPrice = summaryStatistics.getMax();
+        int[] result = new int[]{minPrice, maxPrice};
+
+        return result;
+    }
+
+    private int[] getMinMaxPercentDiscount(List<ProductSkuModel> productSkus) {
+        if(productSkus.size() == 1) {
+            return new int[]{this.getDiscountValue(productSkus.get(0).getRegularPrice(), productSkus.get(0).getProductSkuDiscount()), this.getDiscountValue(productSkus.get(0).getRegularPrice(), productSkus.get(0).getProductSkuDiscount())};
+        }
+        IntSummaryStatistics summaryStatistics = productSkus.stream()
+                .map(productSku -> this.getDiscountValue(productSku.getRegularPrice(), productSku.getProductSkuDiscount()))
+                .mapToInt(Integer::intValue)
+                .summaryStatistics();
+
+        int minDiscount = summaryStatistics.getMin();
+        int maxDiscount = summaryStatistics.getMax();
+        int[] result = new int[]{minDiscount, maxDiscount};
+
+        return result;
+    }
+
+    private int getDiscountValue(int regularPrice, ProductSkuDiscountModel productSkuDiscount) {
+        if(productSkuDiscount == null) {
+            return 0;
+        }
+        int result = productSkuDiscount.getType() == ProductSkuDiscountModel.DiscountTypeEnums.PERCENT
+                ? productSkuDiscount.getValue()
+                : (100/regularPrice) * productSkuDiscount.getValue();
+        return result;
     }
 }
