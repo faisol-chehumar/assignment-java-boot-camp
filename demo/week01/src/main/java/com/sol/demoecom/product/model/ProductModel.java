@@ -1,6 +1,7 @@
 package com.sol.demoecom.product.model;
 
 import com.sol.demoecom.common.BaseModel;
+import com.sol.demoecom.user.model.UserBasketItemModel;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,6 +18,10 @@ public class ProductModel extends BaseModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private BrandModel brand;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private UserBasketItemModel userBasketItem;
 
     @Column(nullable = false)
     private String name;

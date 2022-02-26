@@ -1,12 +1,12 @@
 package com.sol.demoecom.user;
 
+import com.sol.demoecom.user.model.UserModel;
 import com.sol.demoecom.user.response.UserCredential;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 

@@ -1,7 +1,6 @@
 package com.sol.demoecom.user;
 
-import com.sol.demoecom.common.ResponseSuccess;
-import com.sol.demoecom.user.response.UserCredential;
+import com.sol.demoecom.user.model.UserModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
@@ -14,8 +13,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;

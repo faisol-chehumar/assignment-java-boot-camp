@@ -3,15 +3,13 @@ package com.sol.demoecom;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
 import com.sol.demoecom.product.repository.ProductRepository;
-import com.sol.demoecom.user.UserModel;
+import com.sol.demoecom.user.model.UserModel;
 import com.sol.demoecom.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class DemoEcomApplication {

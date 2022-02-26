@@ -1,5 +1,6 @@
 package com.sol.demoecom.user;
 
+import com.sol.demoecom.user.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

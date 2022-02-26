@@ -1,6 +1,6 @@
 package com.sol.demoecom.user;
 
-import org.h2.engine.User;
+import com.sol.demoecom.user.model.UserModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
