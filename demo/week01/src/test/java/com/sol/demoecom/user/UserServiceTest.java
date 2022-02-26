@@ -1,7 +1,10 @@
 package com.sol.demoecom.user;
 
+import com.sol.demoecom.user.exception.AuthenticationFailException;
 import com.sol.demoecom.user.model.UserModel;
+import com.sol.demoecom.user.repository.UserRepository;
 import com.sol.demoecom.user.response.UserCredential;
+import com.sol.demoecom.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
