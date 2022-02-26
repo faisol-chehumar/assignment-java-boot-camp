@@ -15,9 +15,11 @@ public class ProductDetailMapper implements RowMapper<ProductDetail, ProductMode
     @Override
     public ProductDetail mapRow(ProductModel product) {
         ProductDetail productDetail = new ProductDetail();
+
         productDetail.setId(product.getId().toString());
         productDetail.setName(product.getName());
         productDetail.setDescription(product.getDescription());
+        productDetail.setProductNumber(product.getProductNumber());
         productDetail.setImages(product.getImages().stream().map(p -> p.getImage()).collect(Collectors.toList()));
         productDetail.setRegularPriceMin(product.getProductSkus().isEmpty() ? 0 : this.getRegularPrice(product.getProductSkus())[1]);
         productDetail.setRegularPriceMax(product.getProductSkus().isEmpty() ? 0 : this.getRegularPrice(product.getProductSkus())[1]);

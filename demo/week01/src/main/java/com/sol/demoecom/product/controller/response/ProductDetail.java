@@ -3,21 +3,21 @@ package com.sol.demoecom.product.controller.response;
 import java.util.List;
 
 public class ProductDetail {
-	private int salePriceMin;
-	private List<String> images;
-	private Object percentDiscountMax;
-	private Rating rating;
-	private String description;
-	private Object percentDiscountMin;
-	private List<VariantsItem> variants;
-	private String productNumber;
-	private int regularPriceMin;
-	private int salePriceMax;
-	private int warrantyDays;
-	private String name;
-	private List<AttributesItem> attributes;
 	private String id;
+	private String name;
+	private String productNumber;
+	private String description;
+	private List<String> images;
+	private int regularPriceMin;
 	private int regularPriceMax;
+	private int salePriceMin;
+	private int salePriceMax;
+	private Object percentDiscountMin;
+	private Object percentDiscountMax;
+	private int warrantyDays;
+	private Rating rating;
+	private List<AttributesItem> attributes;
+	private List<VariantsItem> variants;
 
 	@Override
 	public String toString() {
