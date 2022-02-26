@@ -1,4 +1,4 @@
-package com.sol.demoecom.user;
+package com.sol.demoecom.user.repository;
 
 import com.sol.demoecom.user.model.UserModel;
 import com.sol.demoecom.user.repository.UserRepository;

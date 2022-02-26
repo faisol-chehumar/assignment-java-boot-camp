@@ -1,4 +1,4 @@
-package com.sol.demoecom.user;
+package com.sol.demoecom.user.controller;
 
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.model.ProductSkuModel;

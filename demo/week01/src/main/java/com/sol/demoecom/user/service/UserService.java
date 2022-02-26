@@ -29,6 +29,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public void setProductSkuRepository(ProductSkuRepository productSkuRepository) {
+        this.productSkuRepository = productSkuRepository;
+    }
+
     public UserCredential login(String username, String password) {
         Optional<UserModel> matchedUser = userRepository.findByUsernameAndPassword(username, password);
         if(matchedUser.isPresent()) {
