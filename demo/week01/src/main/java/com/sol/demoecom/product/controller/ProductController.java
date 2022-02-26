@@ -4,11 +4,11 @@ import com.sol.demoecom.common.ResponseSuccess;
 import com.sol.demoecom.product.controller.response.ProductDetail;
 import com.sol.demoecom.product.controller.response.ProductsItem;
 import com.sol.demoecom.product.controller.response.SearchProduct;
+import com.sol.demoecom.product.exception.ProductNotFoundException;
 import com.sol.demoecom.product.mapper.ProductDetailMapper;
 import com.sol.demoecom.product.mapper.ProductItemMapper;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.repository.ProductRepository;
-import com.sol.demoecom.user.AuthenticationFailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +37,6 @@ public class ProductController {
         if(product.isPresent()) {
             return new ResponseSuccess(new ProductDetailMapper().mapRow(product.get()));
         }
-        return null;
+        throw new ProductNotFoundException();
     }
 }
