@@ -1,7 +1,5 @@
 package com.sol.demoecom.product.controller;
 
-import com.sol.demoecom.common.ResponseSuccess;
-import com.sol.demoecom.product.controller.response.SearchProduct;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.repository.ProductRepository;
 import org.json.JSONArray;
@@ -57,14 +55,12 @@ class ProductControllerTest {
     @DisplayName("Should return true if product isNotNull")
     void getProductDetail_withProductId_productNotNull () throws JSONException {
         // Arrange
-        List<ProductModel> testProducts = new ArrayList<>();
         ProductModel product = new ProductModel("NMD_R1 BOBA FETT SPECTOO SHOES", "234510233456", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet libero magna, eu volutpat metus euismod sit amet. Nullam aliquet vel orci ac efficitur.", "กรุงเทพ", 365);
-
-        String testKeyword = "nmd";
+        product.setId(UUID.fromString("325536ff-cfb8-4ff4-a45c-3483d8717e36"));
 
         when(productRepository.findById(product.getId())).thenReturn(Optional.of(product));
-        when(productRepository.count()).thenReturn((long) testProducts.size());
 
+        System.out.println("Action");
         // Action
         String stringResponse = testRestTemplate.getForObject(String.format("/products/%s", product.getId()), String.class);
 
