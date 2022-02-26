@@ -11,31 +11,72 @@ public class VariantsItem{
 	private List<Integer> attributeIndex;
 	private int salePrice;
 
-	public int getRegularPrice(){
+	@Override
+	public String toString() {
+		return "VariantsItem{" +
+				"regularPrice=" + regularPrice +
+				", image='" + image + '\'' +
+				", unitInStock=" + unitInStock +
+				", percentDiscount=" + percentDiscount +
+				", sku='" + sku + '\'' +
+				", attributeIndex=" + attributeIndex +
+				", salePrice=" + salePrice +
+				'}';
+	}
+
+	public int getRegularPrice() {
 		return regularPrice;
 	}
 
-	public String getImage(){
+	public void setRegularPrice(int regularPrice) {
+		this.regularPrice = regularPrice;
+	}
+
+	public String getImage() {
 		return image;
 	}
 
-	public int getUnitInStock(){
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public int getUnitInStock() {
 		return unitInStock;
 	}
 
-	public int getPercentDiscount(){
+	public void setUnitInStock(int unitInStock) {
+		this.unitInStock = unitInStock;
+	}
+
+	public int getPercentDiscount() {
 		return percentDiscount;
 	}
 
-	public String getSku(){
+	public void setPercentDiscount(int percentDiscount) {
+		this.percentDiscount = percentDiscount;
+	}
+
+	public String getSku() {
 		return sku;
 	}
 
-	public List<Integer> getAttributeIndex(){
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
+
+	public List<Integer> getAttributeIndex() {
 		return attributeIndex;
 	}
 
-	public int getSalePrice(){
+	public void setAttributeIndex(List<Integer> attributeIndex) {
+		this.attributeIndex = attributeIndex;
+	}
+
+	public int getSalePrice() {
 		return salePrice;
+	}
+
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
 	}
 }

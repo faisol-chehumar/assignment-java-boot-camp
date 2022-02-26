@@ -19,63 +19,144 @@ public class ProductDetail {
 	private String id;
 	private int regularPriceMax;
 
-	public int getSalePriceMin(){
+	@Override
+	public String toString() {
+		return "ProductDetail{" +
+				"salePriceMin=" + salePriceMin +
+				", images=" + images +
+				", percentDiscountMax=" + percentDiscountMax +
+				", rating=" + rating +
+				", description='" + description + '\'' +
+				", percentDiscountMin=" + percentDiscountMin +
+				", variants=" + variants +
+				", productNumber='" + productNumber + '\'' +
+				", regularPriceMin=" + regularPriceMin +
+				", salePriceMax=" + salePriceMax +
+				", warrantyDays=" + warrantyDays +
+				", name='" + name + '\'' +
+				", attributes=" + attributes +
+				", id='" + id + '\'' +
+				", regularPriceMax=" + regularPriceMax +
+				'}';
+	}
+
+	public int getSalePriceMin() {
 		return salePriceMin;
 	}
 
-	public List<String> getImages(){
+	public void setSalePriceMin(int salePriceMin) {
+		this.salePriceMin = salePriceMin;
+	}
+
+	public List<String> getImages() {
 		return images;
 	}
 
-	public Object getPercentDiscountMax(){
+	public void setImages(List<String> images) {
+		this.images = images;
+	}
+
+	public Object getPercentDiscountMax() {
 		return percentDiscountMax;
 	}
 
-	public Rating getRating(){
+	public void setPercentDiscountMax(Object percentDiscountMax) {
+		this.percentDiscountMax = percentDiscountMax;
+	}
+
+	public Rating getRating() {
 		return rating;
 	}
 
-	public String getDescription(){
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
+
+	public String getDescription() {
 		return description;
 	}
 
-	public Object getPercentDiscountMin(){
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Object getPercentDiscountMin() {
 		return percentDiscountMin;
 	}
 
-	public List<VariantsItem> getVariants(){
+	public void setPercentDiscountMin(Object percentDiscountMin) {
+		this.percentDiscountMin = percentDiscountMin;
+	}
+
+	public List<VariantsItem> getVariants() {
 		return variants;
 	}
 
-	public String getProductNumber(){
+	public void setVariants(List<VariantsItem> variants) {
+		this.variants = variants;
+	}
+
+	public String getProductNumber() {
 		return productNumber;
 	}
 
-	public int getRegularPriceMin(){
+	public void setProductNumber(String productNumber) {
+		this.productNumber = productNumber;
+	}
+
+	public int getRegularPriceMin() {
 		return regularPriceMin;
 	}
 
-	public int getSalePriceMax(){
+	public void setRegularPriceMin(int regularPriceMin) {
+		this.regularPriceMin = regularPriceMin;
+	}
+
+	public int getSalePriceMax() {
 		return salePriceMax;
 	}
 
-	public int getWarrantyDays(){
+	public void setSalePriceMax(int salePriceMax) {
+		this.salePriceMax = salePriceMax;
+	}
+
+	public int getWarrantyDays() {
 		return warrantyDays;
 	}
 
-	public String getName(){
+	public void setWarrantyDays(int warrantyDays) {
+		this.warrantyDays = warrantyDays;
+	}
+
+	public String getName() {
 		return name;
 	}
 
-	public List<AttributesItem> getAttributes(){
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<AttributesItem> getAttributes() {
 		return attributes;
 	}
 
-	public String getId(){
+	public void setAttributes(List<AttributesItem> attributes) {
+		this.attributes = attributes;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public int getRegularPriceMax(){
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public int getRegularPriceMax() {
 		return regularPriceMax;
+	}
+
+	public void setRegularPriceMax(int regularPriceMax) {
+		this.regularPriceMax = regularPriceMax;
 	}
 }

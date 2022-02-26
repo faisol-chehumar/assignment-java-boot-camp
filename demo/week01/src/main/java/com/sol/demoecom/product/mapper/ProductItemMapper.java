@@ -35,7 +35,7 @@ public class ProductItemMapper implements RowMapper<ProductsItem, ProductModel> 
     }
 
     private Rating getRating() {
-        List<Integer> ratingCount = Arrays.asList(0, 0, 0, 0, 0);
+        Integer ratingCount = 1324;
         double ratingStar = 4.8;
 
         Rating ratingResult = new Rating();
