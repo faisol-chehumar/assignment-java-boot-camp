@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class ProductModel extends BaseModel {
     @OneToMany(mappedBy = "product")
     private List<ProductImageModel> images;
@@ -50,6 +50,20 @@ public class ProductModel extends BaseModel {
         this.description = description;
         this.shopLocation = shopLocation;
         this.warrantDays = warrantDays;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductModel{" +
+                "images=" + images +
+                ", productSkus=" + productSkus +
+                ", brand=" + brand +
+                ", name='" + name + '\'' +
+                ", productNumber='" + productNumber + '\'' +
+                ", description='" + description + '\'' +
+                ", shopLocation='" + shopLocation + '\'' +
+                ", warrantDays=" + warrantDays +
+                '}';
     }
 
     public List<ProductImageModel> getImages() {
