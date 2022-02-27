@@ -1,4 +1,4 @@
-package com.sol.demoecom.user.response;
+package com.sol.demoecom.user.controller.response;
 
 import java.util.List;
 

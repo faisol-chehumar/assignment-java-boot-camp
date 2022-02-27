@@ -1,4 +1,4 @@
-package com.sol.demoecom.user.request;
+package com.sol.demoecom.user.controller.request;
 
 public class LoginRequest {
     private String username;

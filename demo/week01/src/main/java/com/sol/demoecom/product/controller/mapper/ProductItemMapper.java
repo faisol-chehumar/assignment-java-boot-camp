@@ -1,49 +1,45 @@
-package com.sol.demoecom.product.mapper;
+package com.sol.demoecom.product.controller.mapper;
 
 import com.sol.demoecom.common.RowMapper;
-import com.sol.demoecom.product.controller.response.*;
+import com.sol.demoecom.product.controller.response.AttributesItem;
+import com.sol.demoecom.product.controller.response.ProductsItem;
+import com.sol.demoecom.product.controller.response.Rating;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.model.ProductSkuDiscountModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
 
-import java.util.ArrayList;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
-public class ProductDetailMapper implements RowMapper<ProductDetail, ProductModel> {
+public class ProductItemMapper implements RowMapper<ProductsItem, ProductModel> {
+
+
     @Override
-    public ProductDetail mapRow(ProductModel product) {
-        ProductDetail productDetail = new ProductDetail();
-        productDetail.setId(product.getId().toString());
-        productDetail.setName(product.getName());
-        productDetail.setDescription(product.getDescription());
-        productDetail.setProductNumber(product.getProductNumber());
-        productDetail.setImages(product.getImages().stream().map(p -> p.getImage()).collect(Collectors.toList()));
-        productDetail.setRegularPriceMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxRegularPrice(product.getProductSkus())[1]);
-        productDetail.setRegularPriceMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxRegularPrice(product.getProductSkus())[1]);
-        productDetail.setSalePriceMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxSalePrice(product.getProductSkus())[0]);
-        productDetail.setSalePriceMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxSalePrice(product.getProductSkus())[1]);
-        productDetail.setPercentDiscountMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxPercentDiscount(product.getProductSkus())[0]);
-        productDetail.setPercentDiscountMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxPercentDiscount(product.getProductSkus())[1]);
-        productDetail.setWarrantyDays(product.getWarrantDays());
-        productDetail.setRating(this.getRating());
-        List<AttributesItem> attributesItems = this.getAttribute(product.getProductSkus());
+    public ProductsItem mapRow(ProductModel product) {
+        try {
+            ProductsItem productsItem = new ProductsItem();
 
-        productDetail.setVariants(product.getProductSkus().stream().map(p -> new ProductVariantMapper().mapRow(p, attributesItems)).collect(Collectors.toList()));
+            productsItem.setId(product.getId().toString());
+            productsItem.setName(product.getName());
+            productsItem.setImage(product.getImages().isEmpty() ? null : product.getImages().get(0).getImage());
+            productsItem.setRegularPriceMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxRegularPrice(product.getProductSkus())[1]);
+            productsItem.setRegularPriceMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxRegularPrice(product.getProductSkus())[1]);
+            productsItem.setSalePriceMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxSalePrice(product.getProductSkus())[0]);
+            productsItem.setSalePriceMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxSalePrice(product.getProductSkus())[1]);
+            productsItem.setPercentDiscountMin(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxPercentDiscount(product.getProductSkus())[0]);
+            productsItem.setPercentDiscountMax(product.getProductSkus().isEmpty() ? 0 : this.getMinMaxPercentDiscount(product.getProductSkus())[1]);
+            productsItem.setShopLocation(product.getShopLocation());
+            productsItem.setRatingStar(this.getRating().getRatingStar());
 
-        return productDetail;
+            return productsItem;
+        } catch (Exception ex) {
+            System.out.println("ex" + ex);
+            return null;
+        }
     }
 
     @Override
-    public ProductDetail mapRow(ProductModel productModel, List<AttributesItem> attributesItem) {
+    public ProductsItem mapRow(ProductModel productModel, List<AttributesItem> attributesItem) {
         return null;
-    }
-
-    private List<AttributesItem> getAttribute(List<ProductSkuModel> productSkus) {
-        List<AttributesItem> attributes = new ArrayList<>();
-        attributes.add(new AttributesItem());
-        return attributes;
     }
 
     private Rating getRating() {

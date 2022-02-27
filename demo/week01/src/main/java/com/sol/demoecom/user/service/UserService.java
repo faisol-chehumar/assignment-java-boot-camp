@@ -9,7 +9,7 @@ import com.sol.demoecom.user.model.UserBasketItemModel;
 import com.sol.demoecom.user.model.UserBasketModel;
 import com.sol.demoecom.user.model.UserModel;
 import com.sol.demoecom.user.repository.UserRepository;
-import com.sol.demoecom.user.response.UserCredential;
+import com.sol.demoecom.user.controller.response.UserCredential;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.sol.demoecom.user;
+package com.sol.demoecom.user.controller;
 
 import com.sol.demoecom.common.UnauthorizationException;
 import com.sol.demoecom.common.ResponseFail;

@@ -1,20 +1,18 @@
-package com.sol.demoecom.user;
+package com.sol.demoecom.user.controller;
 
 import com.sol.demoecom.common.ResponseSuccess;
-import com.sol.demoecom.product.controller.response.ProductsItem;
-import com.sol.demoecom.product.mapper.ProductItemMapper;
 import com.sol.demoecom.product.repository.ProductSkuRepository;
-import com.sol.demoecom.user.mapper.BasketItemMapper;
+import com.sol.demoecom.user.controller.mapper.BasketItemMapper;
 import com.sol.demoecom.user.model.UserBasketItemModel;
 import com.sol.demoecom.user.model.UserBasketModel;
 import com.sol.demoecom.user.model.UserModel;
 import com.sol.demoecom.user.repository.UserBasketRepository;
 import com.sol.demoecom.user.repository.UserRepository;
-import com.sol.demoecom.user.request.AddItemToBasketRequest;
-import com.sol.demoecom.user.request.LoginRequest;
-import com.sol.demoecom.user.response.BasketItems;
-import com.sol.demoecom.user.response.MyBasket;
-import com.sol.demoecom.user.response.UserCredential;
+import com.sol.demoecom.user.controller.request.AddItemToBasketRequest;
+import com.sol.demoecom.user.controller.request.LoginRequest;
+import com.sol.demoecom.user.controller.response.BasketItems;
+import com.sol.demoecom.user.controller.response.MyBasket;
+import com.sol.demoecom.user.controller.response.UserCredential;
 import com.sol.demoecom.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
