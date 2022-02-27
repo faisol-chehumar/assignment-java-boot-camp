@@ -11,6 +11,14 @@
 
 
 
+## User Flow
+* [User Flow](https://github.com/faisol-chehumar/assignment-java-boot-camp/wiki/User-Flow)
+
+## Doc Module
+* [User Module](https://github.com/faisol-chehumar/assignment-java-boot-camp/wiki/User-Module)
+* [Product Module](https://github.com/faisol-chehumar/assignment-java-boot-camp/wiki/Product-Module)
+
+
 
 
 
