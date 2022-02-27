@@ -38,16 +38,18 @@ public class UserServiceTest {
 
         String username = "user01";
         String password = "pass";
-        String testCredential = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlVzZXIwMSJ9.saNh8MedJAAeSWE06XH5M-2EcWny0ZFfvIS-qJjFfWk";
+        UUID testCredential = UUID.fromString("db1b53cd-1e8a-4bed-bc64-dd3279e7e37c");
+
 
         UserModel user = new UserModel(username, password);
+        user.setId(testCredential);
         when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(Optional.of(user));
 
         // Assert
         UserCredential credential = userService.login(username, password);
 
         // Assert
-        assertThat(credential.getToken()).isEqualTo(testCredential);
+        assertThat(credential.getToken()).isEqualTo(testCredential.toString());
     }
 
     @Test
