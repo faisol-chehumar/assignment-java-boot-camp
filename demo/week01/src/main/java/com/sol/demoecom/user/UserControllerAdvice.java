@@ -1,5 +1,6 @@
 package com.sol.demoecom.user;
 
+import com.sol.demoecom.common.UnauthorizationException;
 import com.sol.demoecom.common.ResponseFail;
 import com.sol.demoecom.product.exception.ProductNotFoundException;
 import com.sol.demoecom.user.exception.AuthenticationFailException;
@@ -31,6 +32,13 @@ public class UserControllerAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseFail productNotFound(ProductNotFoundException e) {
+        return new ResponseFail(e.getMessage());
+    }
+
+    @ExceptionHandler(UnauthorizationException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseFail notAuthorization(UnauthorizationException e) {
         return new ResponseFail(e.getMessage());
     }
 }

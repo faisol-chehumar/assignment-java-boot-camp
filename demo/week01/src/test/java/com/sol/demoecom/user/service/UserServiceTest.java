@@ -73,7 +73,7 @@ public class UserServiceTest {
         UUID productSkuUuid = UUID.fromString("4e8b7b81-c66d-435b-a58b-0e7d3e03d7aa");
         productSku.setId(productSkuUuid);
         product.addProductSku(productSku);
-        
+
         when(userRepository.getById(user.getId())).thenReturn(user);
         when(productSkuRepository.findById(productSku.getId())).thenReturn(Optional.of(productSku));
 

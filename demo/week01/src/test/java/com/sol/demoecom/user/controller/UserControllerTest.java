@@ -85,9 +85,11 @@ class UserControllerTest {
 
         when(userRepository.getById(user.getId())).thenReturn(user);
         when(productSkuRepository.findById(productSku.getId())).thenReturn(Optional.of(productSku));
+        when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("token", user.getId().toString());
         JSONObject loginJsonObject = new JSONObject();
         loginJsonObject.put("userId", UserUuid);
         loginJsonObject.put("quantity", 2);
