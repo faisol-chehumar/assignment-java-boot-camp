@@ -2,9 +2,9 @@ package com.sol.demoecom.product.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sol.demoecom.common.BaseModel;
+import com.sol.demoecom.order.OrderModel;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "product_ratings")

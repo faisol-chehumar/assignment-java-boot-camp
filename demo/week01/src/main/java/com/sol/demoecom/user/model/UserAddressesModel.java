@@ -16,12 +16,12 @@ public class UserAddressesModel extends BaseModel {
 
     private String lastname;
 
+    @Column(nullable=false)
     private String mobile;
 
-    @Column(unique = true)
+    @Column(nullable=false, unique = true)
     private String email;
 
-    @Column(unique = true)
     private String address;
 
     @Column(nullable=false)

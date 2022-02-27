@@ -36,7 +36,7 @@ public class UserService {
     public UserCredential login(String username, String password) {
         Optional<UserModel> matchedUser = userRepository.findByUsernameAndPassword(username, password);
         if(matchedUser.isPresent()) {
-            return new UserCredential("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlVzZXIwMSJ9.saNh8MedJAAeSWE06XH5M-2EcWny0ZFfvIS-qJjFfWk");
+            return new UserCredential(matchedUser.get().getId().toString());
         }
 
         throw new AuthenticationFailException();
