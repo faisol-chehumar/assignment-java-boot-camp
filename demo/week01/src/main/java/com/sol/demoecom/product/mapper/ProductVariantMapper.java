@@ -1,8 +1,8 @@
 package com.sol.demoecom.product.mapper;
 
+import com.sol.demoecom.common.RowMapper;
 import com.sol.demoecom.product.controller.response.AttributesItem;
 import com.sol.demoecom.product.controller.response.VariantsItem;
-import com.sol.demoecom.product.model.ProductSkuDiscountModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
 import com.sol.demoecom.product.model.ProductVariantModel;
 

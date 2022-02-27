@@ -5,6 +5,7 @@ import com.sol.demoecom.common.BaseModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name="user_basket_items")
@@ -23,10 +24,10 @@ public class UserBasketItemModel extends BaseModel {
     public UserBasketItemModel() {
     }
 
-    public UserBasketItemModel(UserBasketModel userBasket, int quantity, ProductSkuModel productSku) {
+    public UserBasketItemModel(UserBasketModel userBasket, ProductSkuModel productSku, int quantity) {
         this.userBasket = userBasket;
-        this.quantity = quantity;
         this.productSku = productSku;
+        this.quantity = quantity;
     }
 
     public UserBasketModel getUserBasket() {
@@ -37,19 +38,19 @@ public class UserBasketItemModel extends BaseModel {
         this.userBasket = userBasket;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public ProductSkuModel getProductSku() {
         return productSku;
     }
 
     public void setProductSku(ProductSkuModel productSku) {
         this.productSku = productSku;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

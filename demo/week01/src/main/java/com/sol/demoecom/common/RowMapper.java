@@ -1,4 +1,4 @@
-package com.sol.demoecom.product.mapper;
+package com.sol.demoecom.common;
 
 import com.sol.demoecom.product.controller.response.AttributesItem;
 

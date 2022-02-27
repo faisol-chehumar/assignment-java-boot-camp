@@ -1,5 +1,6 @@
 package com.sol.demoecom.product.mapper;
 
+import com.sol.demoecom.common.RowMapper;
 import com.sol.demoecom.product.controller.response.AttributesItem;
 import com.sol.demoecom.product.controller.response.ProductsItem;
 import com.sol.demoecom.product.controller.response.Rating;

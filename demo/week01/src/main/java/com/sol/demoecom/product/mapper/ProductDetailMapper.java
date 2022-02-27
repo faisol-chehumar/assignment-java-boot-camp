@@ -1,7 +1,7 @@
 package com.sol.demoecom.product.mapper;
 
+import com.sol.demoecom.common.RowMapper;
 import com.sol.demoecom.product.controller.response.*;
-import com.sol.demoecom.product.model.ProductAttributeModel;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.model.ProductSkuDiscountModel;
 import com.sol.demoecom.product.model.ProductSkuModel;

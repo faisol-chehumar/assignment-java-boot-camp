@@ -52,7 +52,7 @@ public class UserService {
             if(productSku.get().getUnitInStock() <= 0 || productSku.get().getUnitInStock() < itemQuantity) {
                 throw new NotEnoughProductException();
             }
-            UserBasketItemModel itemInBasket = new UserBasketItemModel(userBasket, itemQuantity, productSku.get());
+            UserBasketItemModel itemInBasket = new UserBasketItemModel(userBasket, productSku.get(), itemQuantity);
             userBasket.addItem(itemInBasket);
             userRepository.save(user);
             return true;
