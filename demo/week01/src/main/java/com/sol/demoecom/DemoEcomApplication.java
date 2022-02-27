@@ -35,7 +35,7 @@ public class DemoEcomApplication {
 
 	@PostConstruct
 	void initializeUserData() {
-		UserModel user = new UserModel("user01", "pass");
+		UserModel user = new UserModel("user01", "pass", "Kaka", "Kakao", "0877174080", "kaka@gmail.com");
 		user = userRepository.save(user);
 
 		UserBasketModel userBasket = new UserBasketModel();
