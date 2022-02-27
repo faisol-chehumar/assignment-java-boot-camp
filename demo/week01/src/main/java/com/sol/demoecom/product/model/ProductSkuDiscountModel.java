@@ -1,5 +1,6 @@
 package com.sol.demoecom.product.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sol.demoecom.common.BaseModel;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class ProductSkuDiscountModel extends BaseModel {
     @OneToOne
     @MapsId
     @JoinColumn(name = "product_sku_id")
+    @JsonBackReference
     private ProductSkuModel productSku;
 
     @Column(nullable = false)

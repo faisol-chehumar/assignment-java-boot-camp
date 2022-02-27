@@ -1,5 +1,6 @@
 package com.sol.demoecom.product.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sol.demoecom.common.BaseModel;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class ProductSkuModel extends BaseModel {
     private List<ProductRatingModel> productRatings;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private ProductModel product;
 
     @Column(nullable = false, unique = true)

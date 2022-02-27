@@ -1,5 +1,6 @@
 package com.sol.demoecom.user.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sol.demoecom.common.BaseModel;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 public class UserBasketModel extends BaseModel {
     @OneToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private UserModel user;
 
     @OneToMany(mappedBy = "userBasket", cascade = CascadeType.ALL, orphanRemoval = true)

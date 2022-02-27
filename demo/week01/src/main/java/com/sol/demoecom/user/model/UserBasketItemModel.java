@@ -1,5 +1,6 @@
 package com.sol.demoecom.user.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sol.demoecom.common.BaseModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Table(name="user_basket_items")
 public class UserBasketItemModel extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private UserBasketModel userBasket;
 
     @OneToOne
