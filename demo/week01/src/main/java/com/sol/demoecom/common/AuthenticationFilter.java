@@ -29,12 +29,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         try {
             String token = request.getHeader("token");
             List<String> urls = new ArrayList<>();
-            urls.add("/user/basket");
-            urls.add("/user/addresses");
-            urls.add("/user/orders");
-            urls.add("/user/orders/payment");
+            urls.add("/user");
 
-            if(stringContainsItemFromList(request.getRequestURI(), urls).size() > 0) {
+            if(stringContainsItemFromList(request.getRequestURI(), urls).size() > 0 && !request.getRequestURI().equals("/user/login")) {
                 if(token == null) {
                     throw new UnauthorizationException();
                 }

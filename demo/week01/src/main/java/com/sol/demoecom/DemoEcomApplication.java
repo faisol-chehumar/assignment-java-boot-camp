@@ -3,6 +3,7 @@ package com.sol.demoecom;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
 import com.sol.demoecom.product.repository.ProductRepository;
+import com.sol.demoecom.user.model.UserAddressesModel;
 import com.sol.demoecom.user.model.UserBasketModel;
 import com.sol.demoecom.user.model.UserModel;
 import com.sol.demoecom.user.repository.UserBasketRepository;
@@ -12,6 +13,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class DemoEcomApplication {
@@ -36,6 +39,9 @@ public class DemoEcomApplication {
 	@PostConstruct
 	void initializeUserData() {
 		UserModel user = new UserModel("user01", "pass", "Kaka", "Kakao", "0877174080", "kaka@gmail.com");
+		List<UserAddressesModel> addresses = new ArrayList<>();
+		addresses.add(new UserAddressesModel(user, "Mama", "Kaka", "0877194980", "mamakaka@gmail.com", "15/14", "ลาดพร้าว", "กรุงเทพ", "10800"));
+		user.setAddresses(addresses);
 		user = userRepository.save(user);
 
 		UserBasketModel userBasket = new UserBasketModel();

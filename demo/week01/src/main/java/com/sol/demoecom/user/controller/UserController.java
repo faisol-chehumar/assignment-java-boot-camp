@@ -3,6 +3,7 @@ package com.sol.demoecom.user.controller;
 import com.sol.demoecom.common.ResponseSuccess;
 import com.sol.demoecom.product.repository.ProductSkuRepository;
 import com.sol.demoecom.user.controller.mapper.BasketItemMapper;
+import com.sol.demoecom.user.model.UserAddressesModel;
 import com.sol.demoecom.user.model.UserBasketItemModel;
 import com.sol.demoecom.user.model.UserBasketModel;
 import com.sol.demoecom.user.model.UserModel;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -62,5 +64,12 @@ public class UserController {
         List<BasketItems> items = itemsInBasket.stream().map(i -> new BasketItemMapper().mapRow(i)).collect(Collectors.toList());
 
         return new ResponseSuccess(new MyBasket(userBasket.getItems().size(), items));
+    }
+
+    @GetMapping("/user/{userId}/addresses")
+    public ResponseSuccess<UserAddressesModel> getMyAddresses(@PathVariable UUID userId) {
+        UserModel user = userRepository.getById(userId);
+
+        return new ResponseSuccess(user.getAddresses());
     }
 }

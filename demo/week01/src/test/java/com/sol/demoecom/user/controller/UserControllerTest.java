@@ -3,10 +3,12 @@ package com.sol.demoecom.user.controller;
 import com.sol.demoecom.product.model.ProductModel;
 import com.sol.demoecom.product.model.ProductSkuModel;
 import com.sol.demoecom.product.repository.ProductSkuRepository;
+import com.sol.demoecom.user.model.UserAddressesModel;
 import com.sol.demoecom.user.model.UserBasketItemModel;
 import com.sol.demoecom.user.model.UserBasketModel;
 import com.sol.demoecom.user.model.UserModel;
 import com.sol.demoecom.user.repository.UserRepository;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +18,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -163,5 +164,51 @@ class UserControllerTest {
 
         // Assert
         assertThat(success).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("Should return data true when get my addresses")
+    void getMyAddresses_withInitData_sizeEqualTo1() throws JSONException {
+        // Arrange
+        String testUsername = "user01";
+        String testPassword = "pass";
+        UserModel user = new UserModel(testUsername, testPassword);
+        UUID UserUuid = UUID.fromString("8b2b55d0-3269-4bb2-8404-b52ce4e41fef");
+        user.setId(UserUuid);
+        List<UserAddressesModel> addresses = new ArrayList<>();
+        addresses.add(new UserAddressesModel(user, "Kaka", "Kakao", "0877174980", "kakao@gmail.com", "15/14", "ลาดพร้าว", "กรุงเทพ", "10800"));
+        user.setAddresses(addresses);
+
+        when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
+        when(userRepository.getById(user.getId())).thenReturn(user);
+
+        // create headers
+        HttpHeaders headers = new HttpHeaders();
+
+        // set `Content-Type` and `Accept` headers
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        // example of custom header
+        headers.set("token", user.getId().toString());
+
+        // build the request
+        HttpEntity request = new HttpEntity(headers);
+
+
+        ResponseEntity<String> stringResponse = testRestTemplate.exchange(
+                String.format("/user/%s/addresses", user.getId().toString()),
+                HttpMethod.GET,
+                request,
+                String.class,
+                1
+        );
+
+        // Action
+        JSONObject jsonResponse = new JSONObject(stringResponse.getBody());
+
+        JSONArray data = jsonResponse.getJSONArray("data");
+
+        // Assert
+        assertThat(data.length()).isEqualTo(1);
     }
 }
